@@ -103,8 +103,8 @@ input[type="number"] {
 
 .certificate__preview {
   margin: 0 auto;
-  width: 65%;
-  height: 100vh;
+  width: 62%;
+  height: 98vh;
   background: url("/public/assets/certificate__preview.png") no-repeat
     center/contain;
   position: relative;
@@ -112,7 +112,7 @@ input[type="number"] {
 .certificate__preview .name__container {
   position: absolute;
   top: 22%;
-  left: 6%;
+  left: 5%;
 }
 .certificate__preview .name__container h1 {
   color: black;
@@ -121,7 +121,7 @@ input[type="number"] {
 .certificate__preview .credentials__container {
   position: absolute;
   top: 44%;
-  left: 6%;
+  left: 5%;
 }
 .certificate__preview .credentials__container h2 {
   margin-top: 0;
