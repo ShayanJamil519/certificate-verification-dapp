@@ -10,7 +10,8 @@ const Navbar = ({ isHomePage }) => {
   const address = useAddress();
 
   let showAdminNavLinks =
-    address && address === "0xf479060656de6C8a32B84C8DD508E659A14A3460";
+    (address && address === "0xf479060656de6C8a32B84C8DD508E659A14A3460") ||
+    "0xD57577BC6cdcF9a7EC9e7536BacB2C6c154CF521";
 
   const [showNavLinks, setShowNavLinks] = useState(false);
 
