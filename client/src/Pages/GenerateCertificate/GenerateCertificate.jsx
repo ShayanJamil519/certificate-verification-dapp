@@ -49,6 +49,22 @@ const GenerateCertificate = () => {
           <button>Generate and download as PNG</button>
         </div>
       </div>
+
+      {/* Certificate Preview Container */}
+      <div className="certificate__preview__container">
+        <h1>Certificate Preview</h1>
+        <div className="certificate__preview">
+          <div className="name__container">
+            <h1>John Daud</h1>
+          </div>
+          <div className="credentials__container">
+            <h2>Certified Ethical Hacker - Academia (PCP)</h2>
+            <h3>
+              built in partnership with & endorsed by University Kuala Lumpur
+            </h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

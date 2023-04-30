@@ -87,6 +87,52 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+/* Certificate Preview Container */
+
+.certificate__preview__container {
+  padding: 30px 0 50px 0;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+.certificate__preview__container h1 {
+  text-align: center;
+  font-size: 40px;
+  color: #858585;
+  font-weight: 100;
+}
+
+.certificate__preview {
+  margin: 0 auto;
+  width: 65%;
+  height: 100vh;
+  background: url("/public/assets/certificate__preview.png") no-repeat
+    center/contain;
+  position: relative;
+}
+.certificate__preview .name__container {
+  position: absolute;
+  top: 22%;
+  left: 6%;
+}
+.certificate__preview .name__container h1 {
+  color: black;
+  font-weight: bold;
+}
+.certificate__preview .credentials__container {
+  position: absolute;
+  top: 44%;
+  left: 6%;
+}
+.certificate__preview .credentials__container h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 27px;
+}
+.certificate__preview .credentials__container h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /* ================================= */
 
 @media screen and (max-width: 660px) {
@@ -124,5 +170,48 @@ input[type="number"] {
     width: 39vmin;
     font-size: 13px;
     line-height: 18px;
+  }
+
+  /* Certificate Preview Container */
+
+  .certificate__preview__container {
+    padding: 10px 0 40px 0;
+  }
+
+  .certificate__preview__container h1 {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .certificate__preview {
+    margin: 0 auto;
+    width: 90%;
+    height: 38vh;
+    background: url("/public/assets/certificate__preview.png") no-repeat
+      center/contain;
+  }
+
+  .certificate__preview .name__container {
+    top: 27%;
+    left: 5%;
+  }
+
+  .certificate__preview .name__container h1 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .certificate__preview .credentials__container {
+    padding-right: 12vmin;
+    left: 5%;
+  }
+  .certificate__preview .credentials__container h2 {
+    font-size: 13px;
+    margin-bottom: 2px;
+  }
+
+  .certificate__preview .credentials__container h3 {
+    font-size: 8px;
   }
 }
