@@ -1,0 +1,99 @@
+.upload__cert__container {
+  width: 100%;
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload__cert__container h1 {
+  font-size: 50px;
+  margin-top: 0;
+  color: #858585;
+  font-weight: 100;
+}
+
+.upload__cert__container .input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload__cert__container input[type="file"] {
+  display: none;
+}
+
+.upload__cert__container label {
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4c6fc0;
+  color: white;
+  min-width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+
+.upload__cert__container label:hover {
+  background-color: #4767b1;
+}
+
+.upload__cert__container button {
+  margin: 20vmin 0 4vmin 0;
+  background: #4c6fc0;
+  color: white;
+  border: none;
+  font-size: 18px;
+  padding: 12px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.upload__cert__container .hash p {
+  font-size: 16px;
+}
+.upload__cert__container .hash p span {
+  font-weight: bold;
+  font-size: 18px;
+}
+.upload__cert__container .hash p a {
+  text-decoration: none;
+  color: black;
+}
+
+/* ================================= */
+
+@media screen and (max-width: 660px) {
+  .upload__cert__container {
+    min-height: unset;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .upload__cert__container h1 {
+    font-size: 30px;
+    margin-top: 50px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .upload__cert__container .hash {
+    width: 100%;
+  }
+  .upload__cert__container .hash p {
+    text-align: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .upload__cert__container .hash a {
+    word-break: break-all;
+    margin-top: 5px;
+    text-align: center;
+  }
+}

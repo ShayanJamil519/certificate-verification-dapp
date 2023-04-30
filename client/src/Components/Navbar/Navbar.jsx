@@ -42,7 +42,7 @@ const Navbar = ({ isHomePage }) => {
           {showAdminNavLinks && (
             <>
               <Link to="/generate_certificate">Generate certificate</Link>
-              <Link to="/">Upload certificate</Link>
+              <Link to="/upload_certificate">Upload certificate</Link>
             </>
           )}
 
