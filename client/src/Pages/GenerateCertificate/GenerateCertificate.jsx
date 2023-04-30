@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./GenerateCertificate.css";
+import { toast } from "react-toastify";
+
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -10,16 +12,26 @@ const GenerateCertificate = () => {
   const certificateRef = useRef(null);
 
   const handleCertificateDownloadPNG = () => {
+    if (!certificateName || !certificateHolderName) {
+      toast.error("Please enter all fields to generate the certificate");
+      return;
+    }
+
     html2canvas(certificateRef.current).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.download = "certificate.png";
+      link.download = "Certificate.png";
       link.href = imgData;
       link.click();
     });
   };
 
   const handleCertificateDownloadPDF = () => {
+    if (!certificateName || !certificateHolderName) {
+      toast.error("Please enter all fields to generate the certificate");
+      return;
+    }
+
     const input = certificateRef.current;
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -28,7 +40,7 @@ const GenerateCertificate = () => {
       const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
-      pdf.save("certificate.pdf");
+      pdf.save("Certificate.pdf");
     });
   };
 
@@ -92,10 +104,10 @@ const GenerateCertificate = () => {
       <div className="certificate__preview__container">
         <h1>Certificate Preview</h1>
         <div className="certificate__preview" ref={certificateRef}>
-          <div className="name__container">
+          <div className="content__container">
+            <p>This certifies that</p>
             <h1>{certificateHolderName}</h1>
-          </div>
-          <div className="credentials__container">
+            <p>has successfully completed the:</p>
             <h2>{certificateName}</h2>
             <h3>
               built in partnership with & endorsed by University Kuala Lumpur

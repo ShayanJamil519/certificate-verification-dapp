@@ -105,30 +105,41 @@ input[type="number"] {
   margin: 0 auto;
   width: 62%;
   height: 98vh;
-  background: url("/public/assets/certificate__preview.png") no-repeat
+  /* background: url("/public/assets/certificate__preview.png") no-repeat
+    center/contain; */
+  background: url("/public/assets/certificate__preview1.png") no-repeat
     center/contain;
   position: relative;
 }
-.certificate__preview .name__container {
+
+.certificate__preview p {
+  font-size: 22px;
+  font-style: italic;
+  letter-spacing: 1px;
+  color: #928d8d;
+  font-family: fangsong;
+  margin: 0;
+}
+.certificate__preview .content__container {
   position: absolute;
   top: 22%;
   left: 5%;
 }
-.certificate__preview .name__container h1 {
+.certificate__preview .content__container h1 {
   color: black;
   font-weight: bold;
+  margin: 13px -2px;
+  text-align: left;
 }
-.certificate__preview .credentials__container {
-  position: absolute;
-  top: 44%;
-  left: 5%;
-}
-.certificate__preview .credentials__container h2 {
-  margin-top: 0;
+
+.certificate__preview .content__container h2 {
+  margin-top: 20px;
   margin-bottom: 5px;
   font-size: 27px;
+  text-align: left;
+  padding-right: 15vmin;
 }
-.certificate__preview .credentials__container h3 {
+.certificate__preview .content__container h3 {
   margin-top: 0;
   margin-bottom: 0;
 }
@@ -188,30 +199,35 @@ input[type="number"] {
     margin: 0 auto;
     width: 90%;
     height: 38vh;
-    background: url("/public/assets/certificate__preview.png") no-repeat
+    /* background: url("/public/assets/certificate__preview.png") no-repeat
+      center/contain; */
+    background: url("/public/assets/certificate__preview1.png") no-repeat
       center/contain;
   }
 
-  .certificate__preview .name__container {
-    top: 27%;
-    left: 5%;
+  .certificate__preview p {
+    font-size: 14px;
+    letter-spacing: 0px;
   }
 
-  .certificate__preview .name__container h1 {
-    margin: 0;
+  .certificate__preview .content__container {
+    top: 25%;
+    left: 5%;
+    width: 80%;
+  }
+
+  .certificate__preview .content__container h1 {
     font-size: 18px;
+    margin: 5px 0 5px 0;
   }
 
-  .certificate__preview .credentials__container {
-    padding-right: 12vmin;
-    left: 5%;
-  }
-  .certificate__preview .credentials__container h2 {
+  .certificate__preview .content__container h2 {
     font-size: 13px;
+    margin-top: 8px;
     margin-bottom: 2px;
   }
 
-  .certificate__preview .credentials__container h3 {
+  .certificate__preview .content__container h3 {
     font-size: 8px;
   }
 }
