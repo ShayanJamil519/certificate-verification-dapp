@@ -12,7 +12,7 @@
 }
 
 .navbar .right__container {
-  gap: 20px;
+  gap: 15px;
   display: flex;
   align-items: center;
   font-size: 17px;
@@ -20,10 +20,26 @@
 .navbar .right__container a {
   color: #4c6fc0;
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+  position: relative;
 }
 .navbar .right__container a:first-child {
   font-weight: bold;
+}
+
+.navbar .right__container a:after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: #4c6fc0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.navbar .right__container a:hover:after {
+  width: 100%;
 }
 
 .navbar .right__container .connect__button {
@@ -55,6 +71,11 @@
 
 .navbar__not-home .right__container a {
   color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar__not-home .right__container a:after {
+  background: white;
 }
 
 .navbar__not-home .left__container svg {
