@@ -1,0 +1,128 @@
+.cert__gen__container {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cert__gen__container h1 {
+  font-size: 50px;
+  margin-bottom: 0;
+  color: #858585;
+  font-weight: 100;
+}
+
+.cert__gen__container h6 {
+  font-size: 18px;
+  font-weight: 100;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  color: #979797;
+}
+
+.cert__gen__container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 30%;
+}
+.cert__gen__container form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.cert__gen__container form div input {
+  border: none;
+  background-color: #ededed;
+  color: #484747;
+  padding: 16px 15px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.cert__gen__container form div input:focus {
+  outline: 1px solid #a5a4a4;
+}
+
+.cert__gen__container form div label {
+  color: #858585;
+  font-size: 14px;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cert__gen__container .btns__container {
+  margin-top: 5vmin;
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cert__gen__container .btns__container button {
+  background: #3255a5;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 23vmin;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+/* Remove the increment and decrement arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ================================= */
+
+@media screen and (max-width: 660px) {
+  .cert__gen__container {
+    margin: 50px 0;
+  }
+
+  .cert__gen__container h1 {
+    font-size: 30px;
+    margin-top: 0;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .cert__gen__container h6 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .cert__gen__container form {
+    width: 85%;
+  }
+  .cert__gen__container form div input {
+    padding: 16px 15px;
+    font-size: 15px;
+  }
+  .cert__gen__container form div:last-child input {
+    width: 91%;
+  }
+  .cert__gen__container .btns__container {
+    width: 85%;
+  }
+  .cert__gen__container .btns__container button {
+    width: 39vmin;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
