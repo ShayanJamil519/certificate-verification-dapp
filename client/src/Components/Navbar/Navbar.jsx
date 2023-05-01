@@ -46,7 +46,7 @@ const Navbar = ({ isHomePage }) => {
             </>
           )}
 
-          <Link to="/">Verify certificate</Link>
+          <Link to="/verify_certificate">Verify certificate</Link>
 
           {isHomePage ? (
             <ConnectWallet

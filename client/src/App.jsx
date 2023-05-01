@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./Pages/Home/Home";
 import GenerateCertificate from "./Pages/GenerateCertificate/GenerateCertificate";
 import UploadCertificate from "./Pages/UploadCertificate/UploadCertificate";
+import VerifyCertificate from "./Pages/VerifyCertificate/VerifyCertificate";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/generate_certificate" element={<GenerateCertificate />} />
         <Route path="/upload_certificate" element={<UploadCertificate />} />
+        <Route path="/verify_certificate" element={<VerifyCertificate />} />
       </Routes>
     </div>
   );
