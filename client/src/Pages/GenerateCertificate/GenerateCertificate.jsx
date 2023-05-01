@@ -35,11 +35,18 @@ const GenerateCertificate = () => {
     const input = certificateRef.current;
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
+      // const pdf = new jsPDF("p", "mm", "a4");
+      // const imgProps = pdf.getImageProperties(imgData);
+      // const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
+      // const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+      // Create new jsPDF instance with orientation 'p' (portrait)
+      const pdf = new jsPDF("p", "px", [512, 512]);
+
+      // Add the image to the PDF document and set the width and height to match the image size
+      pdf.addImage(imgData, "PNG", 0, 0, 512, 512);
+
+      // pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
       pdf.save("Certificate.pdf");
     });
   };
@@ -105,6 +112,7 @@ const GenerateCertificate = () => {
         <h1>Certificate Preview</h1>
         <div className="certificate__preview" ref={certificateRef}>
           <div className="content__container">
+            <h4>CERTIFICATE OF COMPLETION</h4>
             <p>This certifies that</p>
             <h1>{certificateHolderName}</h1>
             <p>has successfully completed the:</p>
@@ -112,6 +120,13 @@ const GenerateCertificate = () => {
             <h3>
               built in partnership with & endorsed by University Kuala Lumpur
             </h3>
+          </div>
+          <div className="logo__container">
+            <img src="/assets/UniKL_logo.png" alt="Logo" />
+            <div>
+              <h4>Universiti Kuala Lumpur (UniKL)</h4>
+              <p>Center for Advancement & Continuing Education (ACE)</p>
+            </div>
           </div>
         </div>
       </div>
