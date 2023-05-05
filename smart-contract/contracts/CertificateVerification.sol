@@ -6,7 +6,7 @@ pragma solidity ^0.8.9;
  * @dev This contract allows the storage and retrieval of image hashes, and provides admin functionality
  */
 contract CertificateVerification {
-    bytes32[] private hashList; // An array to store the image hashes
+    string[] private hashList; // An array to store the image hashes
     address private deployer; // The address of the contract deployer
     address private admin; // The address of the admin
 
@@ -47,7 +47,7 @@ contract CertificateVerification {
      * @dev Function to add a new image hash
      * @param _imageHash The image hash to add
      */
-    function addImageHash(bytes32 _imageHash) public onlyAdmin {
+    function addImageHash(string memory _imageHash) public onlyAdmin {
         hashList.push(_imageHash);
     }
 
@@ -56,9 +56,12 @@ contract CertificateVerification {
      * @param _hashValue The value of the image hash to retrieve
      * @return The image hash that matches the given value
      */
-    function getHashByValue(bytes32 _hashValue) public view returns (bytes32) {
+    function getHashByValue(
+        string memory _hashValue
+    ) public view returns (string memory) {
+        bytes32 hashBytes = keccak256(bytes(_hashValue));
         for (uint i = 0; i < hashList.length; i++) {
-            if (hashList[i] == _hashValue) {
+            if (keccak256(bytes(hashList[i])) == hashBytes) {
                 return hashList[i];
             }
         }
@@ -69,7 +72,7 @@ contract CertificateVerification {
      * @dev Function to get all image hashes stored in the contract
      * @return An array containing all image hashes stored in the contract
      */
-    function getAllHashes() public view returns (bytes32[] memory) {
+    function getAllHashes() public view returns (string[] memory) {
         return hashList;
     }
 }

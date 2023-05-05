@@ -1,5 +1,5 @@
 {
-  "address": "0x9996c8FF04F3200c4A81CF6e243c369Ecf5e7d19",
+  "address": "0x59Db55c9c5821483A1c726c06299C234E7A29d97",
   "abi": [
     {
       "inputs": [],
@@ -9,9 +9,9 @@
     {
       "inputs": [
         {
-          "internalType": "bytes32",
+          "internalType": "string",
           "name": "_imageHash",
-          "type": "bytes32"
+          "type": "string"
         }
       ],
       "name": "addImageHash",
@@ -24,9 +24,9 @@
       "name": "getAllHashes",
       "outputs": [
         {
-          "internalType": "bytes32[]",
+          "internalType": "string[]",
           "name": "",
-          "type": "bytes32[]"
+          "type": "string[]"
         }
       ],
       "stateMutability": "view",
@@ -35,17 +35,17 @@
     {
       "inputs": [
         {
-          "internalType": "bytes32",
+          "internalType": "string",
           "name": "_hashValue",
-          "type": "bytes32"
+          "type": "string"
         }
       ],
       "name": "getHashByValue",
       "outputs": [
         {
-          "internalType": "bytes32",
+          "internalType": "string",
           "name": "",
-          "type": "bytes32"
+          "type": "string"
         }
       ],
       "stateMutability": "view",
