@@ -10,7 +10,7 @@ import CertificateVerification from "../../CertificateVerification.json";
 const VerifyCertificate = () => {
   const [hashValue, setHashValue] = useState("");
   const [certificateHash, setCertificateHash] = useState("");
-  const [certificateDownloadType, setCertificateDownloadType] = useState(false);
+  const [certificateDownloadType, setCertificateDownloadType] = useState(null);
 
   const handleViewFile = async () => {
     try {
@@ -18,6 +18,9 @@ const VerifyCertificate = () => {
       console.log(savedDownloadType);
       if (savedDownloadType === "PDF") {
         setCertificateDownloadType(true);
+        console.log("certificateDownloadType" + certificateDownloadType);
+      } else {
+        setCertificateDownloadType(false);
       }
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -57,30 +60,32 @@ const VerifyCertificate = () => {
         <button onClick={handleViewFile}>Submit</button>
 
         {certificateHash && (
-          <>
-            <div className="hash">
-              <p>Certificate is Blockchain verified with hash ID:</p>
-              <a
-                href={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                target="_blank"
-              >
-                {certificateHash}
-              </a>
-            </div>
-            {/* Certificate Preview Container */}
+          <div className="hash">
+            <p>Certificate is Blockchain verified with hash ID:</p>
+            <a
+              href={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
+              target="_blank"
+            >
+              {certificateHash}
+            </a>
+          </div>
+        )}
 
-            <div className="cert__preview__container">
-              {certificateDownloadType === true ? (
-                <img
-                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                />
-              ) : null}
+        {certificateHash && (
+          <div className="cert__preview__container">
+            {certificateDownloadType === true ? (
+              ""
+            ) : (
+              <img
+                src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
+                alt="Certificate"
+              />
+            )}
 
-              <div>
-                <BiCheck />
-              </div>
+            <div>
+              <BiCheck />
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
