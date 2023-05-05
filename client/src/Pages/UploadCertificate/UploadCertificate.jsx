@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./UploadCertificate.css";
 import Navbar from "../../Components/Navbar/Navbar";
-import { Link } from "react-router-dom";
+
 import { ethers } from "ethers";
 import { create } from "ipfs-http-client";
 import { toast } from "react-toastify";
