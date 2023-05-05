@@ -59,10 +59,9 @@
 }
 .upload__cert__container .hash p span {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
 }
-.upload__cert__container .hash p a {
-  text-decoration: none;
+.upload__cert__container .hash p {
   color: black;
 }
 
@@ -90,10 +89,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-  .upload__cert__container .hash a {
     word-break: break-all;
-    margin-top: 5px;
     text-align: center;
+  }
+  .upload__cert__container .hash p span {
+    margin-top: 5px;
   }
 }

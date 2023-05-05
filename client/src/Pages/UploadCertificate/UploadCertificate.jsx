@@ -75,14 +75,22 @@ const UploadCertificate = () => {
           </label>
         </div>
         <button onClick={handleFileUpload}>Upload File</button>
-        <div className="hash">
-          <p>
-            <span>IPFS HASH:</span>
-            <Link to={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}>
+        {certificateHash && (
+          <div className="hash">
+            <p
+              onClick={() =>
+                window.open(
+                  `https://gateway.pinata.cloud/ipfs/${certificateHash}`,
+                  "_blank"
+                )
+              }
+            >
+              <span>IPFS HASH:</span>
+
               {certificateHash}
-            </Link>
-          </p>
-        </div>
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
