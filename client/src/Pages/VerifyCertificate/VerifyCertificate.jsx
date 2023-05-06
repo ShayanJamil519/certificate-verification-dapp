@@ -89,17 +89,3 @@ const VerifyCertificate = () => {
 };
 
 export default VerifyCertificate;
-
-{
-  /* <iframe
-                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                  title="My Certificate"
-                ></iframe> */
-}
-
-{
-  /* <img
-                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                  alt="Certificate"
-                /> */
-}
