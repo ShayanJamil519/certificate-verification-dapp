@@ -9,7 +9,6 @@ import CertificateVerification from "../../CertificateVerification.json";
 const VerifyCertificate = () => {
   const [hashValue, setHashValue] = useState("");
   const [certificateHash, setCertificateHash] = useState("");
-  const [certificateDownloadType, setCertificateDownloadType] = useState(null);
 
   const handleViewFile = async () => {
     try {
@@ -17,15 +16,6 @@ const VerifyCertificate = () => {
       if (!hashValue) {
         toast.error("Please paste your Hash ID to verify your certificate.");
         return;
-      }
-
-      // Getting certificateDownloadType value from localstorage so that we can show iframe for pdf and img for png certificates
-      const savedDownloadType = localStorage.getItem("certificateDownloadType");
-      console.log({ savedDownloadType });
-      if (savedDownloadType === "PDF") {
-        setCertificateDownloadType(true);
-      } else {
-        setCertificateDownloadType(false);
       }
 
       // Making connection to the blockchain, getting signer wallet address and connecting to our smart contract
@@ -82,17 +72,10 @@ const VerifyCertificate = () => {
             </div>
 
             <div className="cert__preview__container">
-              {certificateDownloadType === true ? (
-                <iframe
-                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                  title="My Certificate"
-                ></iframe>
-              ) : (
-                <img
-                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
-                  alt="Certificate"
-                />
-              )}
+              <iframe
+                title="My Content"
+                src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
+              ></iframe>
 
               <div>
                 <BiCheck />
@@ -106,3 +89,17 @@ const VerifyCertificate = () => {
 };
 
 export default VerifyCertificate;
+
+{
+  /* <iframe
+                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
+                  title="My Certificate"
+                ></iframe> */
+}
+
+{
+  /* <img
+                  src={`https://gateway.pinata.cloud/ipfs/${certificateHash}`}
+                  alt="Certificate"
+                /> */
+}

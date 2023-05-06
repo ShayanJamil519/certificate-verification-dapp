@@ -19,9 +19,6 @@ const GenerateCertificate = () => {
       return;
     }
 
-    // Setting certificateDownloadType in localstorage
-    localStorage.setItem("certificateDownloadType", "PNG");
-
     // Donwload file as PNG
     html2canvas(certificateRef.current).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -39,9 +36,6 @@ const GenerateCertificate = () => {
       toast.error("Please enter all fields to generate the certificate");
       return;
     }
-
-    // Setting certificateDownloadType in localstorage
-    localStorage.setItem("certificateDownloadType", "PDF");
 
     // Donwload file as PDF
     const input = certificateRef.current;
