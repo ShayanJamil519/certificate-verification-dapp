@@ -1,21 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { useAddress } from "@thirdweb-dev/react";
+import { ethers } from "ethers";
+import CertificateVerification from "../../CertificateVerification.json";
 
 const Navbar = ({ isHomePage }) => {
   const address = useAddress();
-
-  let showAdminNavLinks =
-    address &&
-    (address === "0xf479060656de6C8a32B84C8DD508E659A14A3460" ||
-      "0xD57577BC6cdcF9a7EC9e7536BacB2C6c154CF521");
-
+  const [adminAddress, setAdminAddress] = useState("");
+  const [deployerAddress, setDeployerAddress] = useState("");
   const [showNavLinks, setShowNavLinks] = useState(false);
 
+  useEffect(() => {
+    // Function to get Admin and Deployer Addresses
+    const getAdminandDeployerAddresses = async () => {
+      // Making connection to the blockchain, getting signer wallet address and connecting to our smart contract
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        CertificateVerification.address,
+        CertificateVerification.abi,
+        signer
+      );
+
+      // calling our smart contract function
+      const adminAddress = await contract.getAdminAddress();
+      setAdminAddress(adminAddress);
+      // calling our smart contract function
+      const deployerAddress = await contract.getDeployerAddress();
+      setDeployerAddress(deployerAddress);
+    };
+
+    getAdminandDeployerAddresses();
+  }, [address]);
+
+  // It will show links when the connect wallet is either deployer of the contract or the current admin
+  let showAdminNavLinks =
+    (address && address === deployerAddress) || address === adminAddress;
+
+  // Function to toggle between the normal users and admin links in navbar
   const toggleNavLinks = () => {
     setShowNavLinks(!showNavLinks);
   };

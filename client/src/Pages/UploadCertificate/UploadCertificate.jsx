@@ -27,6 +27,7 @@ const UploadCertificate = () => {
   const [certificateHash, setCertificateHash] = useState("");
   const [uploadFile, setUploadFile] = useState("");
 
+  // Function to update the status of upload certificate file field text and also updates the uploadfile state
   const handleFileSelection = (event) => {
     if (event.target.files.length > 0) {
       setUploadFile(event.target.files[0]);
@@ -34,17 +35,21 @@ const UploadCertificate = () => {
     }
   };
 
+  // Function to upload file
   const handleFileUpload = async () => {
     try {
+      // Checking if someone clicks upload certicate submit button without selecting a file to make sure it gives error
+      if (!uploadFile) {
+        toast.error("Please select a file to upload.");
+        return;
+      }
+
+      // Adding our file to ipfs
       const added = await ipfs.add(uploadFile);
       let certificateHash = added.path;
-      // setFileSelected(`https://gateway.pinata.cloud/ipfs/${fileSelected}`)
       setCertificateHash(certificateHash);
 
-      console.log(`https://gateway.pinata.cloud/ipfs/${certificateHash}`);
-
-      // console.log("dsfdsf: ", certificateHash);
-
+      // Making connection to the blockchain, getting signer wallet address and connecting to our smart contract
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -53,6 +58,7 @@ const UploadCertificate = () => {
         signer
       );
 
+      // calling our smart contract function
       const tx = await contract.addImageHash(certificateHash);
       await tx.wait();
       toast.success("Certificate uploaded successfully!");

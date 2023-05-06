@@ -13,6 +13,13 @@ const VerifyCertificate = () => {
 
   const handleViewFile = async () => {
     try {
+      // Checking if someone clicks verify certicate submit button without entering haashID to make sure it gives error
+      if (!hashValue) {
+        toast.error("Please paste your Hash ID to verify your certificate.");
+        return;
+      }
+
+      // Getting certificateDownloadType value from localstorage so that we can show iframe for pdf and img for png certificates
       const savedDownloadType = localStorage.getItem("certificateDownloadType");
       console.log({ savedDownloadType });
       if (savedDownloadType === "PDF") {
@@ -21,6 +28,7 @@ const VerifyCertificate = () => {
         setCertificateDownloadType(false);
       }
 
+      // Making connection to the blockchain, getting signer wallet address and connecting to our smart contract
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -29,8 +37,8 @@ const VerifyCertificate = () => {
         signer
       );
 
+      // calling our smart contract function
       const getCertficateHash = await contract.getHashByValue(hashValue);
-      console.log("getCertficateHash" + getCertficateHash);
       setCertificateHash(getCertficateHash);
       toast.success("Certificate verified successfully!");
     } catch (error) {

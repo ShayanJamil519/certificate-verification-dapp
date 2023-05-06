@@ -1,57 +1,55 @@
 import React, { useState, useRef } from "react";
 import "./GenerateCertificate.css";
-import { toast } from "react-toastify";
+import Navbar from "../../Components/Navbar/Navbar";
 
+import { toast } from "react-toastify";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import Navbar from "../../Components/Navbar/Navbar";
 
 const GenerateCertificate = () => {
   const [certificateHolderName, setCertificateHolderName] = useState("");
   const [certificateName, setCertificateName] = useState("");
   const certificateRef = useRef(null);
 
+  // Function to download Certificate as PNG File
   const handleCertificateDownloadPNG = () => {
+    // Checking if someone clicks generate certicate submit button without entering all fields to make sure it gives error
     if (!certificateName || !certificateHolderName) {
       toast.error("Please enter all fields to generate the certificate");
       return;
     }
 
+    // Setting certificateDownloadType in localstorage
     localStorage.setItem("certificateDownloadType", "PNG");
 
+    // Donwload file as PNG
     html2canvas(certificateRef.current).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.download = "Certificate.png";
+      link.download = "certificate.png";
       link.href = imgData;
       link.click();
     });
   };
 
+  // Function to download Certificate as PDF
   const handleCertificateDownloadPDF = () => {
+    // Checking if someone clicks generate certicate submit button without entering all fields to make sure it gives error
     if (!certificateName || !certificateHolderName) {
       toast.error("Please enter all fields to generate the certificate");
       return;
     }
 
+    // Setting certificateDownloadType in localstorage
     localStorage.setItem("certificateDownloadType", "PDF");
 
+    // Donwload file as PDF
     const input = certificateRef.current;
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
-      // const pdf = new jsPDF("p", "mm", "a4");
-      // const imgProps = pdf.getImageProperties(imgData);
-      // const pdfWidth = pdf.internal.pageSize.getWidth() - 20;
-      // const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-      // Create new jsPDF instance with orientation 'p' (portrait)
       const pdf = new jsPDF("p", "px", [512, 512]);
-
-      // Add the image to the PDF document and set the width and height to match the image size
       pdf.addImage(imgData, "PNG", 0, 0, 512, 512);
-
-      // pdf.addImage(imgData, "PNG", 10, 10, pdfWidth, pdfHeight);
-      pdf.save("Certificate.pdf");
+      pdf.save("certificate.pdf");
     });
   };
 

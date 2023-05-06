@@ -91,6 +91,7 @@
     flex-direction: column;
     word-break: break-all;
     text-align: center;
+    cursor: pointer;
   }
   .upload__cert__container .hash p span {
     margin-top: 5px;

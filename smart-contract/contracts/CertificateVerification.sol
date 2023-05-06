@@ -75,6 +75,20 @@ contract CertificateVerification {
     function getAllHashes() public view returns (string[] memory) {
         return hashList;
     }
-}
 
-// QmPhvYiVYtkuGzxwZW3FRxhFhZVhLhYwtBxZdyGDi1WQU8
+    /**
+     * @dev Function to get the current admin address
+     * @return The address of the current admin
+     */
+    function getAdminAddress() public view returns (address) {
+        return admin;
+    }
+
+    /**
+     * @dev Function to get the deployer address
+     * @return The address of the deployer
+     */
+    function getDeployerAddress() public view returns (address) {
+        return deployer;
+    }
+}
