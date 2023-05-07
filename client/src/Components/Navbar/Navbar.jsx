@@ -10,7 +10,7 @@ import CertificateVerification from "../../CertificateVerification.json";
 
 const Navbar = ({ isHomePage }) => {
   const address = useAddress();
-  const [adminAddress, setAdminAddress] = useState("");
+  const [isAdminConnected, setIsAdminConnected] = useState(false);
   const [deployerAddress, setDeployerAddress] = useState("");
   const [showNavLinks, setShowNavLinks] = useState(false);
 
@@ -27,8 +27,8 @@ const Navbar = ({ isHomePage }) => {
       );
 
       // calling our smart contract function
-      const adminAddress = await contract.getAdminAddress();
-      setAdminAddress(adminAddress);
+      const isAdminConnected = await contract.isAdmin(address);
+      setIsAdminConnected(isAdminConnected);
       // calling our smart contract function
       const deployerAddress = await contract.getDeployerAddress();
       setDeployerAddress(deployerAddress);
@@ -39,7 +39,7 @@ const Navbar = ({ isHomePage }) => {
 
   // It will show links when the connect wallet is either deployer of the contract or the current admin
   let showAdminNavLinks =
-    (address && address === deployerAddress) || address === adminAddress;
+    address === deployerAddress || isAdminConnected === true;
 
   // Function to toggle between the normal users and admin links in navbar
   const toggleNavLinks = () => {

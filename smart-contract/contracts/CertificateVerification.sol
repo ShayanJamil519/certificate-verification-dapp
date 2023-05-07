@@ -8,14 +8,14 @@ pragma solidity ^0.8.9;
 contract CertificateVerification {
     string[] private hashList; // An array to store the image hashes
     address private deployer; // The address of the contract deployer
-    address private admin; // The address of the admin
+    mapping(address => bool) private admins; // Mapping of admin addresses
 
     /**
      * @dev Modifier to restrict access to admin only
      */
     modifier onlyAdmin() {
         require(
-            (msg.sender == deployer || msg.sender == admin),
+            (msg.sender == deployer || admins[msg.sender]),
             "Only admin can perform this action"
         );
         _;
@@ -29,18 +29,19 @@ contract CertificateVerification {
     }
 
     /**
-     * @dev Function to set the admin address
-     * @param _admin The address of the new admin
+     * @dev Function to add a new admin
+     * @param _admin The address of the new admin to add
      */
-    function setAdmin(address _admin) public onlyAdmin {
-        admin = _admin;
+    function addAdmin(address _admin) public onlyAdmin {
+        admins[_admin] = true;
     }
 
     /**
-     * @dev Function to remove the admin address
+     * @dev Function to remove an admin
+     * @param _admin The address of the admin to remove
      */
-    function removeAdmin() public onlyAdmin {
-        admin = address(0);
+    function removeAdmin(address _admin) public onlyAdmin {
+        admins[_admin] = false;
     }
 
     /**
@@ -77,11 +78,12 @@ contract CertificateVerification {
     }
 
     /**
-     * @dev Function to get the current admin address
-     * @return The address of the current admin
+     * @dev Function to check if an address is an admin
+     * @param _address The address to check
+     * @return A boolean indicating whether the address is an admin or not
      */
-    function getAdminAddress() public view returns (address) {
-        return admin;
+    function isAdmin(address _address) public view returns (bool) {
+        return admins[_address];
     }
 
     /**

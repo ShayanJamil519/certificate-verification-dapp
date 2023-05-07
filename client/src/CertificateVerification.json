@@ -1,10 +1,23 @@
 {
-  "address": "0x72418Ef28C2DDd65419a17495378Fc618364826B",
+  "address": "0x3948eB23D4Ed0D180499F89D5a4169bE415d7E10",
   "abi": [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_admin",
+          "type": "address"
+        }
+      ],
+      "name": "addAdmin",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
       "inputs": [
@@ -17,19 +30,6 @@
       "name": "addImageHash",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getAdminAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -78,10 +78,22 @@
       "type": "function"
     },
     {
-      "inputs": [],
-      "name": "removeAdmin",
-      "outputs": [],
-      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "isAdmin",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -92,7 +104,7 @@
           "type": "address"
         }
       ],
-      "name": "setAdmin",
+      "name": "removeAdmin",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
