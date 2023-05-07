@@ -1,6 +1,3 @@
-# certificate-verification-dapp
-Link 🔗
-
 # Screenshots 🚀
 
 ### Home Page
