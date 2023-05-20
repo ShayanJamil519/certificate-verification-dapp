@@ -13,8 +13,10 @@ function App() {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
+
         <Route path="/generate_certificate" element={<GenerateCertificate />} />
         <Route path="/upload_certificate" element={<UploadCertificate />} />
+
         <Route path="/verify_certificate" element={<VerifyCertificate />} />
       </Routes>
     </div>

@@ -5,8 +5,11 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { toast } from "react-toastify";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import useAccessControl from "../../utils/useAccessControl";
+import { Link } from "react-router-dom";
 
 const GenerateCertificate = () => {
+  const hasAccess = useAccessControl();
   const [certificateHolderName, setCertificateHolderName] = useState("");
   const [certificateName, setCertificateName] = useState("");
   const certificateRef = useRef(null);
@@ -48,85 +51,103 @@ const GenerateCertificate = () => {
   };
 
   return (
-    <div>
-      {/* Navbar */}
-      <Navbar isHomePage={false} />
-      {/* Generate Certificate Container */}
-      <div className="cert__gen__container">
-        <h1>Certificate Generation</h1>
-        <h6>Fill in all details</h6>
-        <form>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              required
-              placeholder="e.g: John Daud"
-              value={certificateHolderName}
-              onChange={(e) => setCertificateHolderName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="registeredID">Registered Id</label>
-            <input
-              type="number"
-              id="registeredID"
-              required
-              placeholder="e.g: 001122334455"
-            />
-          </div>
-          <div>
-            <label htmlFor="credentials">Credentials</label>
-            <input
-              type="text"
-              id="credentials"
-              required
-              placeholder="e.g: Certified Ethical Hacker - Academia (PCP)"
-              value={certificateName}
-              onChange={(e) => setCertificateName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="dateOfCompletion">Date Of Completion</label>
-            <input type="date" id="dateOfCompletion" required />
-          </div>
-        </form>
-        <div className="btns__container">
-          <button onClick={handleCertificateDownloadPDF}>
-            Generate and download as PDF
-          </button>
-          {/* <button>Generate and download as PDF</button> */}
-          <button onClick={handleCertificateDownloadPNG}>
-            Generate and download as PNG
-          </button>
+    <>
+      {!hasAccess ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <h1>You are not authorized to access this page</h1>
+          <Link to={"/"}>Back</Link>
         </div>
-      </div>
-
-      {/* Certificate Preview Container */}
-      <div className="certificate__preview__container">
-        <h1>Certificate Preview</h1>
-        <div className="certificate__preview" ref={certificateRef}>
-          <div className="content__container">
-            <h4>CERTIFICATE OF COMPLETION</h4>
-            <p>This certifies that</p>
-            <h1>{certificateHolderName}</h1>
-            <p>has successfully completed the:</p>
-            <h2>{certificateName}</h2>
-            <h3>
-              built in partnership with & endorsed by University Kuala Lumpur
-            </h3>
+      ) : (
+        <div>
+          {/* Navbar */}
+          <Navbar isHomePage={false} />
+          {/* Generate Certificate Container */}
+          <div className="cert__gen__container">
+            <h1>Certificate Generation</h1>
+            <h6>Fill in all details</h6>
+            <form>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  placeholder="e.g: John Daud"
+                  value={certificateHolderName}
+                  onChange={(e) => setCertificateHolderName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="registeredID">Registered Id</label>
+                <input
+                  type="number"
+                  id="registeredID"
+                  required
+                  placeholder="e.g: 001122334455"
+                />
+              </div>
+              <div>
+                <label htmlFor="credentials">Credentials</label>
+                <input
+                  type="text"
+                  id="credentials"
+                  required
+                  placeholder="e.g: Certified Ethical Hacker - Academia (PCP)"
+                  value={certificateName}
+                  onChange={(e) => setCertificateName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="dateOfCompletion">Date Of Completion</label>
+                <input type="date" id="dateOfCompletion" required />
+              </div>
+            </form>
+            <div className="btns__container">
+              <button onClick={handleCertificateDownloadPDF}>
+                Generate and download as PDF
+              </button>
+              {/* <button>Generate and download as PDF</button> */}
+              <button onClick={handleCertificateDownloadPNG}>
+                Generate and download as PNG
+              </button>
+            </div>
           </div>
-          <div className="logo__container">
-            <img src="/assets/UniKL_logo.png" alt="Logo" />
-            <div>
-              <h4>Universiti Kuala Lumpur (UniKL)</h4>
-              <p>Center for Advancement & Continuing Education (ACE)</p>
+
+          {/* Certificate Preview Container */}
+          <div className="certificate__preview__container">
+            <h1>Certificate Preview</h1>
+            <div className="certificate__preview" ref={certificateRef}>
+              <div className="content__container">
+                <h4>CERTIFICATE OF COMPLETION</h4>
+                <p>This certifies that</p>
+                <h1>{certificateHolderName}</h1>
+                <p>has successfully completed the:</p>
+                <h2>{certificateName}</h2>
+                <h3>
+                  built in partnership with & endorsed by University Kuala
+                  Lumpur
+                </h3>
+              </div>
+              <div className="logo__container">
+                <img src="/assets/UniKL_logo.png" alt="Logo" />
+                <div>
+                  <h4>Universiti Kuala Lumpur (UniKL)</h4>
+                  <p>Center for Advancement & Continuing Education (ACE)</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

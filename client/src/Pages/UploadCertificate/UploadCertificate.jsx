@@ -6,6 +6,8 @@ import { ethers } from "ethers";
 import { create } from "ipfs-http-client";
 import { toast } from "react-toastify";
 import CertificateVerification from "../../CertificateVerification.json";
+import useAccessControl from "../../utils/useAccessControl";
+import { Link } from "react-router-dom";
 
 const projectId = "2NeEZqOeOOi9fQgDL6VoIMwKIZY";
 const projectSecret = "b4ae65044a6e29c52c4091bf29a976b2";
@@ -23,6 +25,7 @@ const ipfs = create({
 });
 
 const UploadCertificate = () => {
+  const hasAccess = useAccessControl();
   const [fileSelected, setFileSelected] = useState(false);
   const [certificateHash, setCertificateHash] = useState("");
   const [uploadFile, setUploadFile] = useState("");
@@ -68,37 +71,60 @@ const UploadCertificate = () => {
   };
 
   return (
-    <div>
-      {/* Navbar */}
-      <Navbar isHomePage={false} />
-      {/* Upload Certificate Generator */}
-      <div className="upload__cert__container">
-        <h1>Upload Certificate</h1>
-        <div className="input-container">
-          <input type="file" id="file-input" onChange={handleFileSelection} />
-          <label htmlFor="file-input">
-            {fileSelected ? "File selected successfully!" : "Select your file"}
-          </label>
+    <>
+      {!hasAccess ? (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <h1>You are not authorized to access this page</h1>
+          <Link to={"/"}>Back</Link>
         </div>
-        <button onClick={handleFileUpload}>Upload File</button>
-        {certificateHash && (
-          <div className="hash">
-            <p
-              onClick={() =>
-                window.open(
-                  `https://gateway.pinata.cloud/ipfs/${certificateHash}`,
-                  "_blank"
-                )
-              }
-            >
-              <span>IPFS HASH:</span>
+      ) : (
+        <div>
+          {/* Navbar */}
+          <Navbar isHomePage={false} />
+          {/* Upload Certificate Generator */}
+          <div className="upload__cert__container">
+            <h1>Upload Certificate</h1>
+            <div className="input-container">
+              <input
+                type="file"
+                id="file-input"
+                onChange={handleFileSelection}
+              />
+              <label htmlFor="file-input">
+                {fileSelected
+                  ? "File selected successfully!"
+                  : "Select your file"}
+              </label>
+            </div>
+            <button onClick={handleFileUpload}>Upload File</button>
+            {certificateHash && (
+              <div className="hash">
+                <p
+                  onClick={() =>
+                    window.open(
+                      `https://gateway.pinata.cloud/ipfs/${certificateHash}`,
+                      "_blank"
+                    )
+                  }
+                >
+                  <span>IPFS HASH:</span>
 
-              {certificateHash}
-            </p>
+                  {certificateHash}
+                </p>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 
