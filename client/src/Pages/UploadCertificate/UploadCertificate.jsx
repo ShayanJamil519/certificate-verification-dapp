@@ -29,6 +29,7 @@ const UploadCertificate = () => {
   const hasAccess = useAccessControl();
   const [fileSelected, setFileSelected] = useState(false);
   const [uploadFile, setUploadFile] = useState("");
+  const [hash, setHash] = useState("");
 
   // Function to update the status of upload certificate file field text and also updates the uploadfile state
   const handleFileSelection = (event) => {
@@ -51,7 +52,7 @@ const UploadCertificate = () => {
       const added = await ipfs.add(uploadFile);
       let certificateHash = added.path;
       console.log("certificateHash: ", certificateHash);
-      // setCertificateHash(certificateHash);
+      setHash(certificateHash);
 
       // Making connection to the blockchain, getting signer wallet address and connecting to our smart contract
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -167,19 +168,19 @@ const UploadCertificate = () => {
             </div>
             <button onClick={handleFileUpload}>Upload File</button>
             {/* <button onClick={handleEmailSend}>Upload File</button> */}
-            {certificateHash && (
+            {hash && (
               <div className="hash">
                 <p
                   onClick={() =>
                     window.open(
-                      `https://gateway.pinata.cloud/ipfs/${certificateHash}`,
+                      `https://gateway.pinata.cloud/ipfs/${hash}`,
                       "_blank"
                     )
                   }
                 >
                   <span>IPFS HASH:</span>
 
-                  {certificateHash}
+                  {hash}
                 </p>
               </div>
             )}
