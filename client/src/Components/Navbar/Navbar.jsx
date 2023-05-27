@@ -38,6 +38,7 @@ const Navbar = ({ isHomePage }) => {
             <>
               <Link to="/generate_certificate">Generate certificate</Link>
               <Link to="/upload_certificate">Upload certificate</Link>
+              <Link to="/view_all_certificates">View all certificate</Link>
             </>
           )}
 

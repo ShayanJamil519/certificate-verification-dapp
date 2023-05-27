@@ -1,7 +1,7 @@
 .home__container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to right, #4c6fc0 40%, white 40%);
+  background: linear-gradient(to right, #4c6fc0 35%, white 35%);
 }
 
 /* Hero Section */
@@ -17,7 +17,7 @@
   flex: 0.395;
 }
 .home__container .hero__section .left__container h1 {
-  font-size: 13vmin;
+  font-size: 11vmin;
   margin-top: 15vmin;
   line-height: 16vmin;
   letter-spacing: 2px;

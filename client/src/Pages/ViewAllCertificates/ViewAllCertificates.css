@@ -1,0 +1,21 @@
+.view__all__certificates__container {
+  width: 100%;
+  padding-bottom: 30px;
+  min-height: 90vh;
+}
+
+.view__all__certificates__container h1 {
+  text-align: center;
+  font-size: 50px;
+  color: #858585;
+  font-weight: 100;
+}
+
+.all__certificates {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
