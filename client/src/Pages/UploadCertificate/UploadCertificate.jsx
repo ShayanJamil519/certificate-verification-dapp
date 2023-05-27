@@ -28,7 +28,6 @@ const ipfs = create({
 const UploadCertificate = () => {
   const hasAccess = useAccessControl();
   const [fileSelected, setFileSelected] = useState(false);
-  const [certificateHash, setCertificateHash] = useState("");
   const [uploadFile, setUploadFile] = useState("");
 
   // Function to update the status of upload certificate file field text and also updates the uploadfile state
