@@ -10,19 +10,8 @@ const DownloadCertificate = () => {
   const navigate = useNavigate();
   const iframeRef = useRef(null);
 
-  const handleDownload = () => {
-    const iframe = iframeRef.current;
-
-    const url = iframe.src;
-
-    const fileExtension = url.split(".").pop();
-    const fileName = `certificate.${fileExtension}`;
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = fileName;
-    link.target = "_blank";
-    link.click();
+  const handleDownload = (link) => {
+    window.open(link, "_blank");
   };
 
   return (
@@ -38,7 +27,13 @@ const DownloadCertificate = () => {
         ></iframe>
       </div>
       <div className="btn__container">
-        <button onClick={handleDownload}>Download Certificate</button>
+        <button
+          onClick={() =>
+            handleDownload(`https://gateway.pinata.cloud/ipfs/${hashID}`)
+          }
+        >
+          Download Certificate
+        </button>
       </div>
     </div>
   );
