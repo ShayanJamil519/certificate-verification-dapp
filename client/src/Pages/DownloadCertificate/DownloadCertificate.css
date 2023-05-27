@@ -36,6 +36,10 @@
   object-fit: contain;
 }
 
+.download__certificate__container .btn__container {
+  text-align: center;
+}
+
 .download__certificate__container .btn__container button {
   background: #4c6fc0;
   color: white;

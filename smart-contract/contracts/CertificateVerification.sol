@@ -49,6 +49,12 @@ contract CertificateVerification {
      * @param _imageHash The image hash to add
      */
     function addImageHash(string memory _imageHash) public onlyAdmin {
+        bytes32 hashBytes = keccak256(bytes(_imageHash));
+        for (uint i = 0; i < hashList.length; i++) {
+            if (keccak256(bytes(hashList[i])) == hashBytes) {
+                revert("Hash already exists");
+            }
+        }
         hashList.push(_imageHash);
     }
 

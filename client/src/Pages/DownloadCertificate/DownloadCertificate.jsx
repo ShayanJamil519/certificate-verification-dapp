@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import "./DownloadCertificate.css";
 import { useParams, useNavigate } from "react-router-dom";
-import html2canvas from "html2canvas";
 
 // QmX6muprkU3oRQCQtarHrZhP7Y8xJGYKKNQ9pWUUwLXQbc
 
@@ -27,6 +26,13 @@ const DownloadCertificate = () => {
         ></iframe>
       </div>
       <div className="btn__container">
+        <p>
+          To download a certificate : <br />
+          As PDF: Click on download certificate button and it will navigate to
+          new page then click on download icon <br />
+          As PNG: Click on download certificate button and it will navigate to
+          new page then right click on certificate
+        </p>
         <button
           onClick={() =>
             handleDownload(`https://gateway.pinata.cloud/ipfs/${hashID}`)
