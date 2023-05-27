@@ -66,8 +66,9 @@ const UploadCertificate = () => {
       const tx = await contract.addImageHash(certificateHash);
       await tx.wait();
       toast.success("Certificate uploaded successfully!");
+
       // Sending Email to Student
-      await handleEmailSend();
+      await handleEmailSend(); // Wait for setCertificateHash to complete before sending email
     } catch (error) {
       toast.error(error.message);
     }
@@ -90,7 +91,14 @@ const UploadCertificate = () => {
       return;
     }
 
-    // Production Environement
+    // // Production Environement
+    // const templateParams = {
+    //   to_name: studentName,
+    //   to_email: studentEmail,
+    //   message: `We are thrilled to extend our warmest congratulations to you for successfully completing your course.  To view and download your certificate, simply click on the following link: [ https://certificate-generator-verifier.netlify.app/download_certificate/${certificateHash} ]. This secure and decentralized link ensures the integrity and immutability of your certificate, providing you with a reliable record of your accomplishment.  Additionally, to validate the authenticity of your microcredential, you can visit our website's verification page by clicking on this direct link: [ https://certificate-generator-verifier.netlify.app/verify_certificate ] and past your HashID [ ${certificateHash} ]. This page will allow you to confirm your certificate's details and ensure its validity for potential employers, colleagues, or other interested parties.       We commend your commitment to continuous learning and professional development. Your newly acquired skills and knowledge from the course will undoubtedly enhance your career prospects and contribute to your success.
+    //   `,
+    // };
+
     const templateParams = {
       to_name: studentName,
       to_email: studentEmail,
