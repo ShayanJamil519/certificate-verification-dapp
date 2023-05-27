@@ -58,6 +58,9 @@ const GenerateCertificate = () => {
       return;
     }
 
+    localStorage.setItem("studentName", certificateHolderName);
+    localStorage.setItem("studentEmail", studentEmail);
+
     // Donwload file as PDF
     const input = certificateRef.current;
     html2canvas(input).then((canvas) => {
