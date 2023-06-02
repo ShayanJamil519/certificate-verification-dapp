@@ -10,8 +10,8 @@ import useAccessControl from "../../utils/useAccessControl";
 import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 
-const projectId = "2QNzA58G3vn9BiuCvR7ZH7jZvQE";
-const projectSecret = "b6a5577e9773327bfd8581e2181be7e3";
+const projectId = "2NeEZqOeOOi9fQgDL6VoIMwKIZY";
+const projectSecret = "b4ae65044a6e29c52c4091bf29a976b2";
 
 const auth =
   "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
@@ -104,10 +104,10 @@ const UploadCertificate = () => {
         emailjs
 
           .send(
-            "service_5ounnvg",
-            "template_smb3bp2",
+            "service_x7393hg",
+            "template_91gjr3s",
             templateParams,
-            "50VgyVjZzx3bkqh1g"
+            "zF2fKmlCZB5Z_fJKq"
           )
           .then(
             () => {
