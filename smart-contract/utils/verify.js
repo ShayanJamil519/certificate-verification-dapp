@@ -4,7 +4,7 @@ const verify = async () => {
   console.log("Verifying contract...");
   try {
     await run("verify:verify", {
-      address: "0xb27ADF3Ba047C4ea6Ddbf8A0B07CCA7CC46bC5D0",
+      address: "0x954859B8c209B0534B6f36077c540e1aD7f6d0de",
       constructorArguments: [],
     });
   } catch (e) {
